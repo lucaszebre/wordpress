@@ -1,0 +1,993 @@
+/*
+Theme Name: themeESGI
+Author: Lucas
+Description: Thème WordPress personnalisé pour le projet ESGI - WooCommerce ecommerce
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: themeesgi
+Tags: e-commerce, woocommerce, custom-menu, featured-images, threaded-comments
+*/
+
+/* --- Variables CSS ---
+   J'ai regroupé les couleurs et tailles ici pour pouvoir
+   les changer facilement si besoin (ex: changer le thème de couleurs)
+*/
+:root {
+    --couleur-principale: #1a1a2e;
+    --couleur-secondaire: #16213e;
+    --couleur-accent: #0f3460;
+    --couleur-surlignage: #e94560;
+    --couleur-fond: #ffffff;
+    --couleur-fond-alt: #f8f9fa;
+    --couleur-texte: #333333;
+    --couleur-texte-clair: #6c757d;
+    --couleur-bordure: #e0e0e0;
+
+    --police: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --largeur-max: 1200px;
+    --espace-xs: 0.5rem;
+    --espace-sm: 1rem;
+    --espace-md: 1.5rem;
+    --espace-lg: 2.5rem;
+    --espace-xl: 4rem;
+    --arrondi: 8px;
+    --ombre: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --ombre-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --transition: 0.3s ease;
+}
+
+/* Reset de base
+   Supprime les marges par défaut et met le box-sizing */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--police);
+    color: var(--couleur-texte);
+    background-color: var(--couleur-fond);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: var(--couleur-accent);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+a:hover {
+    color: var(--couleur-surlignage);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* Container principal
+   Centre le contenu avec une largeur max de 1200px */
+.container {
+    width: 100%;
+    max-width: var(--largeur-max);
+    margin: 0 auto;
+    padding: 0 var(--espace-sm);
+}
+
+/* ======================
+   HEADER / NAVIGATION
+   ====================== */
+.site-header {
+    background: var(--couleur-fond);
+    border-bottom: 1px solid var(--couleur-bordure);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--espace-sm) 0;
+    gap: var(--espace-sm);
+}
+
+.site-logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--couleur-principale);
+}
+
+.site-logo a:hover {
+    color: var(--couleur-surlignage);
+}
+
+/* Nav principale - centrée au milieu du header */
+.main-navigation {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.main-navigation ul {
+    display: flex;
+    gap: var(--espace-md);
+}
+
+.main-navigation a {
+    color: var(--couleur-texte);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+/* Effet de soulignement au survol
+   Ligne qui s'agrandit de gauche à droite */
+.main-navigation a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--couleur-surlignage);
+    transition: width var(--transition);
+}
+
+.main-navigation a:hover::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--espace-sm);
+}
+
+/* Icône panier avec badge compteur */
+.cart-icon {
+    position: relative;
+    color: var(--couleur-texte);
+    font-size: 1.2rem;
+}
+
+.cart-icon .count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: var(--couleur-surlignage);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Bouton hamburger pour mobile
+   Les 3 barres se transforment en X quand on clique */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--couleur-texte);
+    transition: var(--transition);
+}
+
+/* Animation hamburger -> croix */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Bannière promo en haut du site */
+.promo-banner {
+    background: var(--couleur-surlignage);
+    color: #fff;
+    text-align: center;
+    padding: 0.6rem var(--espace-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.promo-banner a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* ======================
+   HERO (page d'accueil)
+   ====================== */
+.hero {
+    background: linear-gradient(135deg, var(--couleur-principale) 0%, var(--couleur-accent) 100%);
+    color: #fff;
+    padding: var(--espace-xl) 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: var(--espace-sm);
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto var(--espace-lg);
+}
+
+/* Boutons CTA */
+.btn {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border-radius: var(--arrondi);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all var(--transition);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--couleur-surlignage);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #d63851;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--ombre-hover);
+}
+
+.btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.btn-outline:hover {
+    background: #fff;
+    color: var(--couleur-principale);
+    transform: translateY(-2px);
+}
+
+/* ======================
+   PRODUITS MIS EN AVANT
+   ====================== */
+.featured-products {
+    padding: var(--espace-xl) 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--couleur-principale);
+    margin-bottom: var(--espace-lg);
+}
+
+/* Grille de produits - s'adapte automatiquement
+   min 260px par colonne, ça remplit la ligne toute seule */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--espace-md);
+}
+
+/* ======================
+   CARTE PRODUIT
+   ====================== */
+.product-card {
+    background: var(--couleur-fond);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--arrondi);
+    overflow: hidden;
+    transition: all var(--transition);
+}
+
+.product-card:hover {
+    box-shadow: var(--ombre-hover);
+    transform: translateY(-4px);
+}
+
+.product-card-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: var(--couleur-fond-alt);
+}
+
+.product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition);
+}
+
+/* Zoom léger sur l'image au survol de la carte */
+.product-card:hover .product-card-image img {
+    transform: scale(1.05);
+}
+
+.product-card-body {
+    padding: var(--espace-sm);
+}
+
+.product-card-body h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.product-card-body h3 a {
+    color: var(--couleur-principale);
+}
+
+.product-card-body h3 a:hover {
+    color: var(--couleur-surlignage);
+}
+
+.product-card-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--couleur-accent);
+    margin-bottom: var(--espace-xs);
+}
+
+/* Prix barré quand en promo */
+.product-card-price del {
+    color: var(--couleur-texte-clair);
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+}
+
+.product-card-price ins {
+    text-decoration: none;
+}
+
+/* Bouton "Ajouter au panier" sur la carte produit */
+.product-card .add-to-bag {
+    display: block;
+    width: 100%;
+    padding: 0.7rem;
+    background: var(--couleur-principale);
+    color: #fff;
+    border: none;
+    border-radius: var(--arrondi);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background var(--transition);
+    text-align: center;
+}
+
+.product-card .add-to-bag:hover {
+    background: var(--couleur-surlignage);
+}
+
+/* ======================
+   SECTION CTA (newsletter)
+   ====================== */
+.cta-section {
+    background: var(--couleur-fond-alt);
+    padding: var(--espace-xl) 0;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--couleur-principale);
+    margin-bottom: var(--espace-sm);
+}
+
+.cta-section p {
+    color: var(--couleur-texte-clair);
+    max-width: 500px;
+    margin: 0 auto var(--espace-lg);
+}
+
+/* ======================
+   LAYOUT PRINCIPAL
+   ====================== */
+.site-content {
+    padding: var(--espace-lg) 0;
+    min-height: 60vh;
+}
+
+.content-area {
+    display: flex;
+    gap: var(--espace-lg);
+}
+
+.content-area.full-width {
+    max-width: var(--largeur-max);
+    margin: 0 auto;
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ======================
+   ARTICLE (single post)
+   ====================== */
+.post-header {
+    margin-bottom: var(--espace-lg);
+}
+
+.post-header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--couleur-principale);
+    line-height: 1.3;
+    margin-bottom: var(--espace-xs);
+}
+
+.post-meta {
+    color: var(--couleur-texte-clair);
+    font-size: 0.9rem;
+    margin-bottom: var(--espace-sm);
+}
+
+.post-meta span {
+    margin-right: var(--espace-sm);
+}
+
+.post-thumbnail {
+    margin-bottom: var(--espace-lg);
+    border-radius: var(--arrondi);
+    overflow: hidden;
+}
+
+.post-content {
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--espace-lg);
+    margin-bottom: var(--espace-sm);
+    color: var(--couleur-principale);
+}
+
+.post-content p {
+    margin-bottom: var(--espace-sm);
+}
+
+.post-content img {
+    border-radius: var(--arrondi);
+    margin: var(--espace-sm) 0;
+}
+
+.post-content ul, .post-content ol {
+    margin-bottom: var(--espace-sm);
+    padding-left: var(--espace-md);
+    list-style: disc;
+}
+
+.post-content ol {
+    list-style: decimal;
+}
+
+.post-content a {
+    text-decoration: underline;
+}
+
+/* ======================
+   ARCHIVE (liste d'articles)
+   ====================== */
+.archive-header {
+    margin-bottom: var(--espace-lg);
+    padding-bottom: var(--espace-sm);
+    border-bottom: 2px solid var(--couleur-bordure);
+}
+
+.archive-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--couleur-principale);
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--espace-lg);
+}
+
+.post-card {
+    background: var(--couleur-fond);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--arrondi);
+    overflow: hidden;
+    transition: all var(--transition);
+}
+
+.post-card:hover {
+    box-shadow: var(--ombre-hover);
+    transform: translateY(-2px);
+}
+
+.post-card-image {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+}
+
+.post-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-card-body {
+    padding: var(--espace-md);
+}
+
+.post-card-body h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.post-card-body h2 a {
+    color: var(--couleur-principale);
+}
+
+.post-card-body h2 a:hover {
+    color: var(--couleur-surlignage);
+}
+
+.post-card-excerpt {
+    color: var(--couleur-texte-clair);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ======================
+   PAGE
+   ====================== */
+.page-header {
+    margin-bottom: var(--espace-lg);
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--couleur-principale);
+}
+
+.page-content {
+    line-height: 1.8;
+}
+
+.page-content h2, .page-content h3 {
+    margin-top: var(--espace-lg);
+    margin-bottom: var(--espace-sm);
+    color: var(--couleur-principale);
+}
+
+.page-content p {
+    margin-bottom: var(--espace-sm);
+}
+
+/* ======================
+   SIDEBAR
+   ====================== */
+.sidebar {
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.sidebar .widget {
+    background: var(--couleur-fond);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--arrondi);
+    padding: var(--espace-md);
+    margin-bottom: var(--espace-md);
+}
+
+.sidebar .widget-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--couleur-principale);
+    margin-bottom: var(--espace-sm);
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--couleur-surlignage);
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--couleur-bordure);
+}
+
+.sidebar ul li:last-child {
+    border-bottom: none;
+}
+
+.sidebar ul li a {
+    color: var(--couleur-texte);
+    font-size: 0.95rem;
+}
+
+.sidebar ul li a:hover {
+    color: var(--couleur-surlignage);
+}
+
+/* ======================
+   WOOCOMMERCE - PAGE PRODUIT
+   ====================== */
+.single-product-wrapper {
+    padding: var(--espace-lg) 0;
+}
+
+/* Layout 2 colonnes : image à gauche, infos à droite */
+.product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espace-xl);
+    align-items: start;
+}
+
+.product-gallery {
+    position: sticky;
+    top: 100px;
+}
+
+.product-gallery img {
+    border-radius: var(--arrondi);
+    width: 100%;
+}
+
+.product-summary {
+    padding: var(--espace-sm);
+}
+
+.product-summary .product-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--couleur-principale);
+    margin-bottom: var(--espace-sm);
+    line-height: 1.3;
+}
+
+.product-summary .product-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--couleur-accent);
+    margin-bottom: var(--espace-sm);
+}
+
+.product-summary .product-price del {
+    color: var(--couleur-texte-clair);
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+
+.product-summary .product-price ins {
+    text-decoration: none;
+    color: var(--couleur-surlignage);
+}
+
+.product-short-desc {
+    color: var(--couleur-texte-clair);
+    line-height: 1.7;
+    margin-bottom: var(--espace-md);
+    padding: var(--espace-sm) 0;
+    border-top: 1px solid var(--couleur-bordure);
+    border-bottom: 1px solid var(--couleur-bordure);
+}
+
+/* Meta produit : SKU, stock, catégories */
+.product-meta-info {
+    margin-bottom: var(--espace-md);
+    font-size: 0.9rem;
+    color: var(--couleur-texte-clair);
+}
+
+.product-meta-info span {
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.product-meta-info strong {
+    color: var(--couleur-texte);
+}
+
+/* ======================
+   FOOTER
+   ====================== */
+.site-footer {
+    background: var(--couleur-principale);
+    color: #fff;
+    margin-top: var(--espace-xl);
+}
+
+/* 3 colonnes dans le footer */
+.footer-widgets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--espace-lg);
+    padding: var(--espace-xl) 0;
+}
+
+.footer-widgets .widget-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: var(--espace-sm);
+    color: #fff;
+}
+
+.footer-widgets ul li {
+    padding: 0.3rem 0;
+}
+
+.footer-widgets ul li a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    transition: color var(--transition);
+}
+
+.footer-widgets ul li a:hover {
+    color: var(--couleur-surlignage);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--espace-sm) 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* ======================
+   PAGINATION
+   ====================== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: var(--espace-lg);
+}
+
+.pagination a, .pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--arrondi);
+    border: 1px solid var(--couleur-bordure);
+    font-weight: 500;
+    transition: all var(--transition);
+}
+
+.pagination a:hover, .pagination .current {
+    background: var(--couleur-principale);
+    color: #fff;
+    border-color: var(--couleur-principale);
+}
+
+/* ======================
+   PAGE "RIEN TROUVÉ"
+   ====================== */
+.no-results {
+    text-align: center;
+    padding: var(--espace-xl) 0;
+}
+
+.no-results h2 {
+    font-size: 1.5rem;
+    color: var(--couleur-principale);
+    margin-bottom: var(--espace-sm);
+}
+
+.no-results p {
+    color: var(--couleur-texte-clair);
+    margin-bottom: var(--espace-md);
+}
+
+/* ======================
+   WOOCOMMERCE - BOUTIQUE
+   Surcharge des styles par défaut de WooCommerce
+   ====================== */
+.woocommerce-ordering {
+    margin-bottom: var(--espace-md);
+}
+
+.woocommerce-result-count {
+    margin-bottom: var(--espace-sm);
+    color: var(--couleur-texte-clair);
+    font-size: 0.9rem;
+}
+
+/* Force WooCommerce à utiliser une grille CSS Grid
+   au lieu de float (les !important c'est parce que
+   WooCommerce charge ses propres styles après) */
+ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+    gap: var(--espace-md) !important;
+}
+
+ul.products li.product {
+    margin: 0 !important;
+}
+
+/* ======================
+   RESPONSIVE - TABLETTE
+   ====================== */
+@media (min-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+}
+
+/* ======================
+   RESPONSIVE - DESKTOP
+   ====================== */
+@media (min-width: 1024px) {
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+}
+
+/* ======================
+   RESPONSIVE - MOBILE (< 768px)
+   ====================== */
+@media (max-width: 767px) {
+    /* Affiche le bouton hamburger sur mobile */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* La navigation devient un menu déroulant vertical */
+    .main-navigation {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--couleur-fond);
+        border-bottom: 1px solid var(--couleur-bordure);
+        padding: var(--espace-sm);
+        box-shadow: var(--ombre);
+    }
+
+    .main-navigation.active {
+        display: block;
+    }
+
+    .main-navigation ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .main-navigation ul li a {
+        display: block;
+        padding: 0.75rem var(--espace-sm);
+        border-bottom: 1px solid var(--couleur-bordure);
+    }
+
+    .main-navigation a::after {
+        display: none;
+    }
+
+    /* Le contenu prend toute la largeur sur mobile */
+    .content-area {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    /* Produit : une seule colonne */
+    .product-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .product-gallery {
+        position: static;
+    }
+
+    /* Footer : une seule colonne */
+    .footer-widgets {
+        grid-template-columns: 1fr;
+        gap: var(--espace-md);
+    }
+
+    .hero {
+        padding: var(--espace-lg) 0;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero .btn {
+        display: block;
+        margin-bottom: var(--espace-xs);
+    }
+
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .post-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .product-summary .product-title {
+        font-size: 1.5rem;
+    }
+
+    .product-summary .product-price {
+        font-size: 1.25rem;
+    }
+}

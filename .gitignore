@@ -1,1 +1,14 @@
-wp-content/
+# Keep only the child theme versioned in wp-content.
+wp-content/*
+!wp-content/themes/
+wp-content/themes/*
+!wp-content/themes/twentytwentyfive-manga-child/
+!wp-content/themes/twentytwentyfive-manga-child/**
+
+# Ignore runtime/generated WordPress content.
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+
+# Ignore local database files.
+data/mysql/

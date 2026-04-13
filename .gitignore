@@ -17,3 +17,6 @@ wp-content/*
 !wp-content/themes/
 wp-content/themes/*
 !wp-content/themes/woostarter/
+!wp-content/plugins/
+wp-content/plugins/*
+!wp-content/plugins/store-temoignages/

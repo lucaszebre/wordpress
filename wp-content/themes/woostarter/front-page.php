@@ -10,9 +10,15 @@ get_header();
         <h1><?php esc_html_e('Bienvenue sur themeESGI', 'themesgi'); ?></h1>
         <p><?php esc_html_e('Découvrez notre collection de produits premium. Design moderne et qualité exceptionnelle.', 'themesgi'); ?></p>
         <div>
-            <a href="<?php echo esc_url(get_permalink(wc_get_page_id('shop'))); ?>" class="btn btn-primary">
-                <?php esc_html_e('Voir la boutique', 'themesgi'); ?>
+            <?php if ( function_exists( 'wc_get_page_id' ) ) : ?>
+            <a href="<?php echo esc_url( get_permalink( wc_get_page_id( 'shop' ) ) ); ?>" class="btn btn-primary">
+                <?php esc_html_e( 'Voir la boutique', 'themesgi' ); ?>
             </a>
+            <?php else : ?>
+            <a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>" class="btn btn-primary">
+                <?php esc_html_e( 'Voir la boutique', 'themesgi' ); ?>
+            </a>
+            <?php endif; ?>
             <a href="#featured-products" class="btn btn-outline">
                 <?php esc_html_e('Produits en vedette', 'themesgi'); ?>
             </a>

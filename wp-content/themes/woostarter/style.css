@@ -12,10 +12,6 @@ Text Domain: themeesgi
 Tags: e-commerce, woocommerce, custom-menu, featured-images, threaded-comments
 */
 
-/* --- Variables CSS ---
-   J'ai regroupé les couleurs et tailles ici pour pouvoir
-   les changer facilement si besoin (ex: changer le thème de couleurs)
-*/
 :root {
     --couleur-principale: #1a1a2e;
     --couleur-secondaire: #16213e;
@@ -40,8 +36,6 @@ Tags: e-commerce, woocommerce, custom-menu, featured-images, threaded-comments
     --transition: 0.3s ease;
 }
 
-/* Reset de base
-   Supprime les marges par défaut et met le box-sizing */
 *,
 *::before,
 *::after {
@@ -83,8 +77,6 @@ ul, ol {
     list-style: none;
 }
 
-/* Container principal
-   Centre le contenu avec une largeur max de 1200px */
 .container {
     width: 100%;
     max-width: var(--largeur-max);
@@ -92,9 +84,6 @@ ul, ol {
     padding: 0 var(--espace-sm);
 }
 
-/* ======================
-   HEADER / NAVIGATION
-   ====================== */
 .site-header {
     background: var(--couleur-fond);
     border-bottom: 1px solid var(--couleur-bordure);
@@ -121,7 +110,6 @@ ul, ol {
     color: var(--couleur-surlignage);
 }
 
-/* Nav principale - centrée au milieu du header */
 .main-navigation {
     flex: 1;
     display: flex;
@@ -141,8 +129,6 @@ ul, ol {
     position: relative;
 }
 
-/* Effet de soulignement au survol
-   Ligne qui s'agrandit de gauche à droite */
 .main-navigation a::after {
     content: '';
     position: absolute;
@@ -164,7 +150,6 @@ ul, ol {
     gap: var(--espace-sm);
 }
 
-/* Icône panier avec badge compteur */
 .cart-icon {
     position: relative;
     color: var(--couleur-texte);
@@ -187,8 +172,6 @@ ul, ol {
     justify-content: center;
 }
 
-/* Bouton hamburger pour mobile
-   Les 3 barres se transforment en X quand on clique */
 .menu-toggle {
     display: none;
     background: none;
@@ -207,7 +190,6 @@ ul, ol {
     transition: var(--transition);
 }
 
-/* Animation hamburger -> croix */
 .menu-toggle.active span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
 }
@@ -220,7 +202,6 @@ ul, ol {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Bannière promo en haut du site */
 .promo-banner {
     background: var(--couleur-surlignage);
     color: #fff;
@@ -235,9 +216,6 @@ ul, ol {
     text-decoration: underline;
 }
 
-/* ======================
-   HERO (page d'accueil)
-   ====================== */
 .hero {
     background: linear-gradient(135deg, var(--couleur-principale) 0%, var(--couleur-accent) 100%);
     color: #fff;
@@ -259,7 +237,6 @@ ul, ol {
     margin: 0 auto var(--espace-lg);
 }
 
-/* Boutons CTA */
 .btn {
     display: inline-block;
     padding: 0.85rem 2rem;
@@ -295,9 +272,6 @@ ul, ol {
     transform: translateY(-2px);
 }
 
-/* ======================
-   PRODUITS MIS EN AVANT
-   ====================== */
 .featured-products {
     padding: var(--espace-xl) 0;
 }
@@ -310,17 +284,12 @@ ul, ol {
     margin-bottom: var(--espace-lg);
 }
 
-/* Grille de produits - s'adapte automatiquement
-   min 260px par colonne, ça remplit la ligne toute seule */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: var(--espace-md);
 }
 
-/* ======================
-   CARTE PRODUIT
-   ====================== */
 .product-card {
     background: var(--couleur-fond);
     border: 1px solid var(--couleur-bordure);
@@ -348,7 +317,6 @@ ul, ol {
     transition: transform var(--transition);
 }
 
-/* Zoom léger sur l'image au survol de la carte */
 .product-card:hover .product-card-image img {
     transform: scale(1.05);
 }
@@ -379,7 +347,6 @@ ul, ol {
     margin-bottom: var(--espace-xs);
 }
 
-/* Prix barré quand en promo */
 .product-card-price del {
     color: var(--couleur-texte-clair);
     font-weight: 400;
@@ -391,7 +358,6 @@ ul, ol {
     text-decoration: none;
 }
 
-/* Bouton "Ajouter au panier" sur la carte produit */
 .product-card .add-to-bag {
     display: block;
     width: 100%;
@@ -411,9 +377,6 @@ ul, ol {
     background: var(--couleur-surlignage);
 }
 
-/* ======================
-   SECTION CTA (newsletter)
-   ====================== */
 .cta-section {
     background: var(--couleur-fond-alt);
     padding: var(--espace-xl) 0;
@@ -433,9 +396,6 @@ ul, ol {
     margin: 0 auto var(--espace-lg);
 }
 
-/* ======================
-   LAYOUT PRINCIPAL
-   ====================== */
 .site-content {
     padding: var(--espace-lg) 0;
     min-height: 60vh;
@@ -456,9 +416,6 @@ ul, ol {
     min-width: 0;
 }
 
-/* ======================
-   ARTICLE (single post)
-   ====================== */
 .post-header {
     margin-bottom: var(--espace-lg);
 }
@@ -523,9 +480,6 @@ ul, ol {
     text-decoration: underline;
 }
 
-/* ======================
-   ARCHIVE (liste d'articles)
-   ====================== */
 .archive-header {
     margin-bottom: var(--espace-lg);
     padding-bottom: var(--espace-sm);
@@ -593,9 +547,6 @@ ul, ol {
     line-height: 1.6;
 }
 
-/* ======================
-   PAGE
-   ====================== */
 .page-header {
     margin-bottom: var(--espace-lg);
 }
@@ -620,9 +571,6 @@ ul, ol {
     margin-bottom: var(--espace-sm);
 }
 
-/* ======================
-   SIDEBAR
-   ====================== */
 .sidebar {
     width: 300px;
     flex-shrink: 0;
@@ -667,14 +615,10 @@ ul, ol {
     color: var(--couleur-surlignage);
 }
 
-/* ======================
-   WOOCOMMERCE - PAGE PRODUIT
-   ====================== */
 .single-product-wrapper {
     padding: var(--espace-lg) 0;
 }
 
-/* Layout 2 colonnes : image à gauche, infos à droite */
 .product-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -731,7 +675,6 @@ ul, ol {
     border-bottom: 1px solid var(--couleur-bordure);
 }
 
-/* Meta produit : SKU, stock, catégories */
 .product-meta-info {
     margin-bottom: var(--espace-md);
     font-size: 0.9rem;
@@ -747,16 +690,12 @@ ul, ol {
     color: var(--couleur-texte);
 }
 
-/* ======================
-   FOOTER
-   ====================== */
 .site-footer {
     background: var(--couleur-principale);
     color: #fff;
     margin-top: var(--espace-xl);
 }
 
-/* 3 colonnes dans le footer */
 .footer-widgets {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -793,9 +732,6 @@ ul, ol {
     color: rgba(255, 255, 255, 0.5);
 }
 
-/* ======================
-   PAGINATION
-   ====================== */
 .pagination {
     display: flex;
     justify-content: center;
@@ -821,9 +757,6 @@ ul, ol {
     border-color: var(--couleur-principale);
 }
 
-/* ======================
-   PAGE "RIEN TROUVÉ"
-   ====================== */
 .no-results {
     text-align: center;
     padding: var(--espace-xl) 0;
@@ -840,10 +773,6 @@ ul, ol {
     margin-bottom: var(--espace-md);
 }
 
-/* ======================
-   WOOCOMMERCE - BOUTIQUE
-   Surcharge des styles par défaut de WooCommerce
-   ====================== */
 .woocommerce-ordering {
     margin-bottom: var(--espace-md);
 }
@@ -854,22 +783,33 @@ ul, ol {
     font-size: 0.9rem;
 }
 
-/* Force WooCommerce à utiliser une grille CSS Grid
-   au lieu de float (les !important c'est parce que
-   WooCommerce charge ses propres styles après) */
 ul.products {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
-    gap: var(--espace-md) !important;
+    display:               grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+    gap:                   var(--espace-md) !important;
+    padding:               0 !important;
+    margin:                0 !important;
+    list-style:            none !important;
+    float:                 none !important;
+    width:                 100% !important;
 }
 
-ul.products li.product {
-    margin: 0 !important;
+ul.products::before,
+ul.products::after {
+    display: none !important;
+    content: none !important;
 }
 
-/* ======================
-   RESPONSIVE - TABLETTE
-   ====================== */
+ul.products li.product,
+ul.products li.product.first,
+ul.products li.product.last {
+    margin:     0 !important;
+    padding:    0 !important;
+    clear:      none !important;
+    float:      none !important;
+    width:      100% !important;
+}
+
 @media (min-width: 768px) {
     .hero h1 {
         font-size: 3rem;
@@ -880,25 +820,17 @@ ul.products li.product {
     }
 }
 
-/* ======================
-   RESPONSIVE - DESKTOP
-   ====================== */
 @media (min-width: 1024px) {
     .hero h1 {
         font-size: 3.5rem;
     }
 }
 
-/* ======================
-   RESPONSIVE - MOBILE (< 768px)
-   ====================== */
 @media (max-width: 767px) {
-    /* Affiche le bouton hamburger sur mobile */
     .menu-toggle {
         display: flex;
     }
 
-    /* La navigation devient un menu déroulant vertical */
     .main-navigation {
         display: none;
         position: absolute;
@@ -930,7 +862,6 @@ ul.products li.product {
         display: none;
     }
 
-    /* Le contenu prend toute la largeur sur mobile */
     .content-area {
         flex-direction: column;
     }
@@ -939,7 +870,6 @@ ul.products li.product {
         width: 100%;
     }
 
-    /* Produit : une seule colonne */
     .product-layout {
         grid-template-columns: 1fr;
     }
@@ -948,7 +878,6 @@ ul.products li.product {
         position: static;
     }
 
-    /* Footer : une seule colonne */
     .footer-widgets {
         grid-template-columns: 1fr;
         gap: var(--espace-md);
@@ -991,3 +920,101 @@ ul.products li.product {
         font-size: 1.25rem;
     }
 }
+
+.woocommerce ul.products li.product {
+    position:       relative !important;
+    background:     #fff;
+    border-radius:  10px;
+    overflow:       visible !important;
+    box-shadow:     0 2px 12px rgba(0,0,0,.07);
+    transition:     transform .2s, box-shadow .2s;
+    display:        flex !important;
+    flex-direction: column;
+    padding:        0 !important;
+    margin:         0 !important;
+    width:          100% !important;
+    float:          none !important;
+}
+
+.woocommerce ul.products li.product:hover {
+    transform:  translateY(-4px);
+    box-shadow: 0 6px 24px rgba(0,0,0,.12);
+}
+
+.woocommerce ul.products li.product a.woocommerce-loop-product__link {
+    display:  block !important;
+    width:    100% !important;
+    position: relative !important;
+}
+
+.woocommerce ul.products li.product a img.attachment-woocommerce_thumbnail {
+    width:         100% !important;
+    height:        200px !important;
+    object-fit:    cover !important;
+    display:       block !important;
+    border-radius: 10px 10px 0 0;
+}
+
+.woocommerce ul.products li.product span.st-badge-populaire img.emoji {
+    width:      1em !important;
+    height:     1em !important;
+    margin:     0 !important;
+    display:    inline !important;
+    object-fit: initial !important;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce ul.products li.product .price,
+.woocommerce ul.products li.product .star-rating,
+.woocommerce ul.products li.product .button {
+    padding-left:  14px;
+    padding-right: 14px;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+    font-size:   1rem !important;
+    font-weight: 600;
+    margin:      10px 0 4px;
+    color:       var(--couleur-principale);
+}
+
+.woocommerce ul.products li.product .star-rating {
+    display:        inline-flex !important;
+    vertical-align: middle !important;
+    margin:         0 8px 0 0 !important;
+}
+
+.woocommerce ul.products li.product .price {
+    display:        inline-flex !important;
+    align-items:    center;
+    gap:            4px;
+    vertical-align: middle !important;
+    font-size:      1rem;
+    font-weight:    700;
+    color:          var(--couleur-surlignage);
+    margin:         0 !important;
+}
+
+.woocommerce ul.products li.product .price del {
+    color:       #aaa;
+    font-weight: 400;
+    font-size:   .875rem;
+}
+
+.woocommerce ul.products li.product .button {
+    display:        block !important;
+    margin:         10px 14px 14px !important;
+    padding:        8px 14px !important;
+    border-radius:  6px !important;
+    font-size:      .85rem !important;
+    font-weight:    600 !important;
+    text-align:     center;
+    background:     var(--couleur-accent) !important;
+    color:          #fff !important;
+    border:         none !important;
+}
+
+.woocommerce ul.products li.product .button:hover {
+    background: var(--couleur-surlignage) !important;
+}
+

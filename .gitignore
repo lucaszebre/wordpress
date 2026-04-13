@@ -10,8 +10,6 @@ wp-content/uploads/
 wp-content/upgrade/
 wp-content/cache/
 
-# Ignore local database files.
-data/mysql/
 data/
 .env
 

@@ -1,9 +1,13 @@
-# Keep only the child theme versioned in wp-content.
+# Keep the ESGI theme and project plugin versioned.
 wp-content/*
 !wp-content/themes/
 wp-content/themes/*
-!wp-content/themes/twentytwentyfive-manga-child/
-!wp-content/themes/twentytwentyfive-manga-child/**
+!wp-content/themes/woostarter/
+!wp-content/themes/woostarter/**
+!wp-content/plugins/
+wp-content/plugins/*
+!wp-content/plugins/store-temoignages/
+!wp-content/plugins/store-temoignages/**
 
 # Ignore runtime/generated WordPress content.
 wp-content/uploads/
@@ -12,11 +16,3 @@ wp-content/cache/
 
 data/
 .env
-
-wp-content/*
-!wp-content/themes/
-wp-content/themes/*
-!wp-content/themes/woostarter/
-!wp-content/plugins/
-wp-content/plugins/*
-!wp-content/plugins/store-temoignages/

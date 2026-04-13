@@ -310,6 +310,23 @@ ul, ol {
     background: var(--couleur-fond-alt);
 }
 
+.manga-card__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: var(--couleur-surlignage);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: var(--ombre);
+}
+
 .product-card-image img {
     width: 100%;
     height: 100%;
@@ -358,6 +375,17 @@ ul, ol {
     text-decoration: none;
 }
 
+.manga-card__categories,
+.manga-card__excerpt {
+    font-size: 0.86rem;
+    color: var(--couleur-texte-clair);
+    margin-bottom: 0.5rem;
+}
+
+.manga-card__categories a {
+    color: var(--couleur-accent);
+}
+
 .product-card .add-to-bag {
     display: block;
     width: 100%;
@@ -373,8 +401,92 @@ ul, ol {
     text-align: center;
 }
 
-.product-card .add-to-bag:hover {
+.manga-add-to-cart,
+.manga-add-to-cart--primary {
+    display: block;
+    width: 100%;
+    padding: 0.7rem;
+    background: var(--couleur-principale);
+    color: #fff;
+    border: none;
+    border-radius: var(--arrondi);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background var(--transition);
+    text-align: center;
+}
+
+.product-card .add-to-bag:hover,
+.manga-add-to-cart:hover,
+.manga-add-to-cart--primary:hover {
     background: var(--couleur-surlignage);
+}
+
+.custom-shop-wrapper {
+    display: grid;
+    gap: var(--espace-lg);
+}
+
+.custom-shop-banner {
+    position: relative;
+    overflow: hidden;
+    padding: var(--espace-lg);
+    border-radius: calc(var(--arrondi) * 1.5);
+    background: linear-gradient(135deg, var(--couleur-principale), var(--couleur-accent));
+    color: #fff;
+    box-shadow: var(--ombre);
+}
+
+.custom-shop-banner__eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 0.75rem;
+}
+
+.custom-shop-banner__title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
+}
+
+.custom-shop-banner__description,
+.custom-shop-banner__shipping {
+    max-width: 58ch;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.custom-shop-banner__shipping {
+    margin-top: 1rem;
+    font-size: 0.98rem;
+}
+
+.manga-single-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0.75rem 0 1rem;
+    padding: 0.4rem 0.75rem;
+    border-left: 4px solid var(--couleur-surlignage);
+    background: var(--couleur-fond-alt);
+    color: var(--couleur-principale);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.product-short-desc {
+    margin: 1rem 0;
+}
+
+.product-meta-info {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
 }
 
 .cta-section {

@@ -12,3 +12,10 @@ wp-content/cache/
 
 # Ignore local database files.
 data/mysql/
+data/
+.env
+
+wp-content/*
+!wp-content/themes/
+wp-content/themes/*
+!wp-content/themes/woostarter/
